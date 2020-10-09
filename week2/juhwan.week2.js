@@ -66,20 +66,20 @@ let getOldUser = function (user, oldAge) {
 
 }
 
-function customMap(getAge, arr) {
+function customMap(func, arr) {
     const array = [];
     for (let i = 0; i < arr.length; i++) {
         array.push(
-            getAge(arr[i])
+            func(arr[i])
         );
     }
     return array;
 }
 
-function customFilter(getOldUser, arr) {
+function customFilter(func, arr) {
     const array = [];
     for (let i = 0; i < arr.length; i++) {
-        let oldUser = getOldUser(arr[i], oldAge);
+        let oldUser = func(arr[i], oldAge);
         if (oldUser != null) array.push(oldUser);
     }
     return array;
