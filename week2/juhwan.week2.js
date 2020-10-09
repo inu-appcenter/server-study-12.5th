@@ -63,6 +63,7 @@ let getAge = function (user) {
 
 let getOldUser = function (user, oldAge) {
     if (user.age === oldAge) return user;
+
 }
 
 function customMap(getAge, arr) {
@@ -75,7 +76,7 @@ function customMap(getAge, arr) {
     return array;
 }
 
-function customFilter(func, arr) {
+function customFilter(getOldUser, arr) {
     const array = [];
     for (let i = 0; i < arr.length; i++) {
         let oldUser = getOldUser(arr[i], oldAge);
