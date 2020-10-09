@@ -6,10 +6,7 @@ const arr = [];
 
 app.get("/add", (req, res) => {
     const {
-        a
-    } = req.query;
-    const {
-        b
+        a,b
     } = req.query;
     const sum = Number(a) + Number(b);
 
@@ -28,15 +25,12 @@ app.get("/add", (req, res) => {
     res.json({
         result: sum
     });
-    res.end();
+
 })
 
 app.get("/minus", (req, res) => {
     const {
-        a
-    } = req.query;
-    const {
-        b
+        a,b
     } = req.query;
     const minus = Number(a) - Number(b);
 
@@ -55,15 +49,11 @@ app.get("/minus", (req, res) => {
     res.json({
         result: minus
     })
-    res.end();
 })
 
 app.get("/multi", (req, res) => {
     const {
-        a
-    } = req.query;
-    const {
-        b
+        a,b
     } = req.query;
     const multi = Number(a) * Number(b);
 
@@ -82,15 +72,12 @@ app.get("/multi", (req, res) => {
     res.json({
         result: multi
     });
-    res.end();
+
 })
 
 app.get("/div", (req, res) => {
     const {
-        a
-    } = req.query;
-    const {
-        b
+        a,b
     } = req.query;
     const div = Number(a) / Number(b);
 
@@ -109,7 +96,7 @@ app.get("/div", (req, res) => {
     res.json({
         result: div
     });
-    res.end();
+
 })
 
 app.get("/history", (req, res) => {
@@ -120,7 +107,6 @@ app.get("/history", (req, res) => {
     res.json({
         history: array
     });
-    res.end();
 })
 
 app.listen(9000, () => {
