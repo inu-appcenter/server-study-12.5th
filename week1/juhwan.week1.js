@@ -56,3 +56,5 @@ const nextYearUsers = users.map(user => {
     return user;
 })
 console.log(nextYearUsers);
+
+console.log("끝");
