@@ -19,7 +19,6 @@ const todoRouter = require("express").Router();
  */
 todoRouter.post("/", contentValidator, (req, res, next) => {
   const { content } = req.body;
-  console.log(content);
   createTodo(content);
   res.status(201).json({ success: true, message: "todo 생성 성공" });
 });
@@ -43,8 +42,12 @@ todoRouter.put("/:id", idAndContentValidator, (req, res, next) => {
   const { id } = req.params;
   const { content } = req.body;
   // const id = req.param.id;
-  updateTodo(id, content, res);
-  res.status(200).json({ success: true, message: "todo 수정 성공" });
+  try {
+    updateTodo(id, content);
+    res.status(200).json({ success: true, message: "todo 수정 성공" });
+  } catch (error) {
+    res.status(500).json({ success: false, message: "DB에 없는 ID입니다." });
+  }
 });
 
 /**
@@ -53,10 +56,12 @@ todoRouter.put("/:id", idAndContentValidator, (req, res, next) => {
  */
 todoRouter.patch("/:id", idValidator, (req, res, next) => {
   const { id } = req.params;
-
-  toggleTodo(id, res);
-
-  res.status(200).json({ success: true, message: "todo 체크 성공" });
+  try {
+    toggleTodo(id);
+    res.status(200).json({ success: true, message: "todo 체크 성공" });
+  } catch (error) {
+    res.status(500).json({ success: false, message: "DB에 없는 ID입니다." });
+  }
 });
 
 /**
@@ -65,8 +70,12 @@ todoRouter.patch("/:id", idValidator, (req, res, next) => {
  */
 todoRouter.delete("/:id", idValidator, (req, res, next) => {
   const { id } = req.params;
-  deleteTodo(id, res);
-  res.status(200).json({ success: true, message: "todo 삭제 완료" });
+  try {
+    deleteTodo(id);
+    res.status(200).json({ success: true, message: "todo 삭제 완료" });
+  } catch (error) {
+    res.status(500).json({ success: false, message: "DB에 없는 ID입니다." });
+  }
 });
 
 /**
